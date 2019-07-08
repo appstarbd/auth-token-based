@@ -16,6 +16,8 @@ Quasar CLI will retrieve it from NPM and install the extension.
 The installation prompts for the routes which should be used to communicate with the backend. The requests and responses of the server should match with this extension.
 Please have a look at https://github.com/stefanvanherwijnen/express-ts-api-starter to see which format this extension uses.
 
+It will also prompt for superuser functionality. This means it will have support for a 'superuser' role which grants access to a list of users, as shown in the screenshot.
+
 ## Layout
 
 A menu component is available as AuthMenu. To use it, add it to the layout, e.g.:
