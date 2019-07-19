@@ -91,29 +91,34 @@ export default {
     register () {
       this.$v.data.$touch()
       if (!this.$v.data.$error) {
-        this.loading = true
-        this.$auth.register(this.data).then(() => {
-          this.$q.dialog({
-            message: this.$t('auth.register.account_created')
-          }).onOk(data => {
-            this.$router.push('/login')
-          })
-        }).catch((error) => {
-          if (error.response) {
-            if (error.response.status === 422) {
-              this.$q.dialog({
-                message: this.$t('auth.register.invalid_data')
-              })
-            } else if (error.response.status === 409) {
-              this.$q.dialog({
-                message: this.$t('auth.register.already_registered')
-              })
-            } else {
-              console.error(error)
+        this.$q.dialog({
+          message: this.$t('auth.register.check_email', { email: this.data.email }),
+          cancel: true
+        }).onOk(() => {
+          this.loading = true
+          this.$auth.register(this.data).then(() => {
+            this.$q.dialog({
+              message: this.$t('auth.register.account_created')
+            }).onOk(data => {
+              this.$router.push('/login')
+            })
+          }).catch((error) => {
+            if (error.response) {
+              if (error.response.status === 422) {
+                this.$q.dialog({
+                  message: this.$t('auth.register.invalid_data')
+                })
+              } else if (error.response.status === 409) {
+                this.$q.dialog({
+                  message: this.$t('auth.register.already_registered')
+                })
+              } else {
+                console.error(error)
+              }
             }
-          }
-        }).finally(() => {
-          this.loading = false
+          }).finally(() => {
+            this.loading = false
+          })
         })
       }
     }

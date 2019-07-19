@@ -54,7 +54,8 @@ export default {
         password_length: '@:auth.errors.password_length',
         password_match: '@:auth.errors.password_match',
         email: '@:auth.errors.email'
-      }
+      },
+      check_email: 'You want to register with the email address {email}, is this correct?'
     },
     verification: {
       verification_success: 'Your e-mail has been verified. You can now login.',
