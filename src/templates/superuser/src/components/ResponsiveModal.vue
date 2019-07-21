@@ -1,8 +1,9 @@
 <template>
   <q-dialog
-    v-model="opened"
+    :value="value"
     persistent
     :maximized="$q.screen.lt.md"
+    @input="toggle"
   >
     <q-layout
       view="Lhh lpR fff"
@@ -17,7 +18,7 @@
             flat
             round
             dense
-            @click="close"
+            v-close-popup
           />
           <q-toolbar-title>
             <slot name="title" />
@@ -57,7 +58,7 @@
 export default {
   name: 'ResponsiveModal',
   props: {
-    opened: {
+    value: {
       type: Boolean,
       default: false
     },
@@ -75,11 +76,11 @@ export default {
     }
   },
   methods: {
+    toggle (value) {
+      this.$emit('input', value)
+    },
     save () {
       this.$emit('save')
-    },
-    close () {
-      this.$emit('close')
     }
   }
 }

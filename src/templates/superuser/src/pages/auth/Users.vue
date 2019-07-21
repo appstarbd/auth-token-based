@@ -57,11 +57,10 @@
   </q-table>
 
       <responsive-modal
-      :opened="editModal.opened"
-      :submitting="editModal.isSubmitting"
-      submit-button="send"
-      @save="submitUser(editModal.data)"
-      @close="editModal.opened = false"
+        v-model="editModal.opened"
+        :submitting="editModal.isSubmitting"
+        submit-button="send"
+        @save="submitUser(editModal.data)"
     >
       <template slot="title">
         {{ editModal.data.email }}
