@@ -71,7 +71,7 @@ export default {
         this.token = this.$route.query.token
         this.$auth.passwordReset({ token: this.token, data: { 'password': this.form.password } }).then((response) => {
           this.$q.dialog({
-            message: this.$t('auth.password.resest.success')
+            message: this.$t('auth.password.reset.success')
           }).onOk(() => {
             this.$router.push('/login')
           })
